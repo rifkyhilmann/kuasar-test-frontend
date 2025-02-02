@@ -1,44 +1,24 @@
 import { Link, useParams } from "react-router-dom";
-import { gql, useQuery } from "@apollo/client";
-import { FaArrowLeft, FaSpinner } from "react-icons/fa";
+import { useQuery } from "@apollo/client";
+import { FaArrowLeft } from "react-icons/fa";
+import { GET_COUNTRIES_BY_CODE } from "@/graphql/countries";
+import LoadingSpinner from "@/components/LoadingSpinner";
 
-// GraphQL query untuk mendapatkan data negara berdasarkan kode negara
-const GET_COUNTRY = gql`
-    query GetCountryByCode($code: String!) {
-        countries(filter: { code: { eq: $code } }) {
-            code
-            name
-            capital
-            currency
-            emoji
-            continent {
-                name
-            }
-            languages {
-                name
-            }
-        }
-    }
-`;
 
 const CountryDetail = () => {
     // Mengambil kode negara dari parameter URL
     const { code } = useParams<{ code: string }>();
 
     // Menjalankan query untuk mengambil data negara menggunakan Apollo Client
-    const { loading, error, data } = useQuery(GET_COUNTRY, { variables: { code } });
+    const { loading, error, data } = useQuery(GET_COUNTRIES_BY_CODE, { variables: { code } });
 
     // Menangani state loading, jika data sedang dimuat
     if (loading) return (
-        <div className="w-full h-screen flex items-center justify-center">
-            <FaSpinner className="animate-spin text-4xl text-blue-500" />
-        </div>
+        <LoadingSpinner />
     );
 
     // Menangani error jika terjadi kesalahan saat pengambilan data
     if (error) return <p>Error: {error.message}</p>;
-
-    console.log(data);
 
     // Pastikan ada data yang diterima dari query
     const country = data?.countries?.[0];

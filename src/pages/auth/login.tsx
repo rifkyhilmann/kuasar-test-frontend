@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { showDialog, showToast } from "../../utils/alertUtils";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../redux/store";
-import { login } from "../../redux/authSlice";
+import { login } from "../../redux/slices/authSlice";
 
 
 const Login = () => {

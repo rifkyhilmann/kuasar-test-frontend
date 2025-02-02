@@ -1,23 +1,10 @@
+import LoadingSpinner from "@/components/LoadingSpinner";
 import Navbar from "@/components/Navbar"; // Import komponen Navbar
-import { gql, useQuery } from "@apollo/client"; // Import GraphQL query dan hook useQuery dari Apollo Client
-import { FaRobot, FaSpinner } from "react-icons/fa"; // Import ikon dari react-icons
+import { GET_COUNTRIES } from "@/graphql/countries"; // Import query graphql countries
+import { useQuery } from "@apollo/client"; // Import GraphQL query dan hook useQuery dari Apollo Client
+import { FaRobot } from "react-icons/fa"; // Import ikon dari react-icons
 import { Link } from "react-router-dom"; // Import Link untuk navigasi antar halaman
 
-// GraphQL query untuk mengambil daftar negara
-const GET_COUNTRIES = gql`
-    query GetCountries {
-        countries {
-            code        
-            name        
-            capital     
-            currency    
-            emoji       
-            languages { 
-                name
-            }
-        }
-    }
-`;
 
 // Komponen utama yang menampilkan daftar negara
 const Pages = () => {
@@ -26,9 +13,7 @@ const Pages = () => {
 
     // Jika data masih dimuat, tampilkan spinner loading
     if (loading) return (
-        <div className="w-full h-screen flex items-center justify-center">
-            <FaSpinner className="animate-spin text-4xl text-blue-500" />
-        </div>
+        <LoadingSpinner />
     );
 
     // Jika terjadi error saat fetch data, tampilkan pesan error

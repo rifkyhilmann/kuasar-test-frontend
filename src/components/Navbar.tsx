@@ -1,4 +1,4 @@
-import { logout } from "@/redux/authSlice"; // Import action logout dari authSlice Redux
+import { logout } from "@/redux/slices/authSlice"; // Import action logout dari authSlice Redux
 import { RootState } from "@/redux/store"; // Import RootState untuk mendapatkan tipe state Redux
 import { useState } from "react"; // Import useState untuk mengelola state lokal
 import { FaChevronDown, FaChevronUp, FaSignOutAlt } from "react-icons/fa"; // Import ikon dari react-icons

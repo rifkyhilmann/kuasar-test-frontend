@@ -70,7 +70,7 @@ const Chat = () => {
                 </div>
             </div>
 
-            {/* Area Percakapan (Padding atas untuk memberi ruang header) */}
+            {/* Area Percakapan  */}
             <div className="flex flex-1 w-full justify-center overflow-y-auto pt-20 pb-28">
                 <div className="content flex flex-col gap-4">
                     {/* Menampilkan pesan-pesan dalam percakapan */}
